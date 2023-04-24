@@ -28,6 +28,11 @@ function KidInfo( { id, name, dietaryRestrictions, parentName, parentPhone, pick
                     <Button>
                         🗑 Delete Child Data
                     </Button>
+                    {isEditing ? (
+                        <EditRestrictions
+                        id={id}
+                        />
+                    ) : null }
 
                 </div>
 
