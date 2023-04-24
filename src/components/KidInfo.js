@@ -22,7 +22,7 @@ function KidInfo( { id, name, dietaryRestrictions, parentName, parentPhone, pick
                 {parentInfoButton}
                 {isOpen ? parentInfo : null} <br />
                 <div className ="actions">
-                    <Button>
+                    <Button nClick={() => setIsEditing((isEditing) => !isEditing)} basic color='green' size="tiny">
                             ✏️ Edit Dietary Restrictions
                     </Button>
                     <Button>
