@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Modal, Form, Header, Button, Icon } from "semantic-ui-react";
 
 
-function NewKid(){
+function NewKid( {onAddKid} ){
     const [open, setOpen] = useState(false)
-    const [saved, setSaved] = useState(false);
+    // const [saved, setSaved] = useState(false);
     const [formData, setFormData] = useState({
         name: "",
         dietary_restrictions: ""
@@ -57,14 +57,16 @@ function NewKid(){
                 name="name"
                 type="text" 
                 onChange={handleChange}
-                value={formData.name} />
+                value={formData.name}
+                autoComplete="off" />
             <Form.Input 
                 label="Dietary Restrictions" 
                 name="dietary_restrictions"
                 type="text"
                 onChange={handleChange} 
-                value={formData.dietary_restrictions} />
-            {saved ? <div>Saved!</div> : null}
+                value={formData.dietary_restrictions}
+                autoComplete="off" />
+            {/* {saved ? <div>Saved!</div> : null} */}
         </Modal.Content>
         <Modal.Actions>
             {/* <Button type="button" basic color='red' onClick={() => setOpen(false)}>

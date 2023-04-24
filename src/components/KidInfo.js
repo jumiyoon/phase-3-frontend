@@ -24,7 +24,7 @@ function KidInfo( { id, name, dietaryRestrictions, parentName, parentPhone, pick
             "Content-Type": "application/json"
         }
         }).then((res) => res.json)
-g
+
         onDeleteKid(id);
         }
         else {
