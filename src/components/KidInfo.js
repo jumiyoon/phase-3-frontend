@@ -15,6 +15,24 @@ function KidInfo( { id, name, dietaryRestrictions, parentName, parentPhone, pick
             <b>⏰ Pickup Time: </b> {pickupTime}
         </div>)
 
+    function handleDeleteClick() {
+        const confirm= window.confirm("Delete child data?");
+        if (confirm) {
+        fetch(`http://localhost:9292/kids/${id}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        }
+        }).then((res) => res.json)
+
+        onDeleteKid(id);
+        }
+        else {
+            console.log("Kid not deleted")
+        }
+        console.log(confirm);
+    }
+
     return (
         <div>
             <li>
