@@ -2,6 +2,10 @@ import React from "react";
 import { Input } from 'semantic-ui-react'
 
 function Search({search, setSearch}) {
+    function handleChange(e) {
+        console.log(e.target.value)
+        setSearch(e.target.value)
+    }
 
     return (
         <div>
