@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import KidsList from "./KidsList";
 import Search from "./Search";
+import NewKid from "./NewKid";
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
             <Header/>
             <Search search={search} setSearch={setSearch} />
             <KidsList kids={displayKids} onKidDelete={handleDeleteKid} />
+            <NewKid />
          </main>
     )
 }
