@@ -1,6 +1,6 @@
 import React from "react";
 
-function KidInfo( { }) {
+function KidInfo( { id, name, dietaryRestrictions, parentName, parentPhone, pickupTime, onDeleteKid } ) {
 
     return (
         <div>
