@@ -3,10 +3,14 @@ import { Modal, Form, Header, Button, Icon } from "semantic-ui-react";
 
 
 function NewKid(){
+    const [open, setOpen] = useState(false)
+
     const [formData, setFormData] = useState({
         name: "",
         dietary_restrictions: ""
     });
+
+
     function handleChange(e) {
         const name = e.target.name;
         let value = e.target.value;
@@ -22,10 +26,11 @@ function NewKid(){
 
     return (
         <Modal
-        as={Form}
-        open={open}
-        size='small'
-        trigger={<Button>Add New Kid </Button>}
+            as={Form}
+            open={open}
+            size='small'
+            onOpen={() => setOpen(true)}
+            trigger={<Button>Add New Kid </Button>}
         >
         <Header icon="save" content="New Kid Info" as="h3" />
         <Modal.Content>
