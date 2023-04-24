@@ -3,6 +3,7 @@ import Header from "./Header";
 import KidsList from "/KidsList";
 function App() {
     const [kids, setKids] = useState([]);
+    const [search, setSearch] = useState("");
 
     useEffect(() => {
         fetch("http://localhost:9292/kids")
@@ -22,6 +23,7 @@ function App() {
     return (
          <main className="header-color">
             <Header/>
+            <Search search={search} setSearch={setSearch}
             <KidList kids={displayKids} onKidDelete={handleDeleteKid} />
          </main>
     )
