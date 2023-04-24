@@ -24,7 +24,7 @@ function KidInfo( { id, name, dietaryRestrictions, parentName, parentPhone, pick
             "Content-Type": "application/json"
         }
         }).then((res) => res.json)
-
+g
         onDeleteKid(id);
         }
         else {
@@ -43,7 +43,7 @@ function KidInfo( { id, name, dietaryRestrictions, parentName, parentPhone, pick
                     <Button nClick={() => setIsEditing((isEditing) => !isEditing)} basic color='green' size="tiny">
                             ✏️ Edit Dietary Restrictions
                     </Button>
-                    <Button>
+                    <Button onClick={handleDeleteClick} basic color='red' size="tiny">
                         🗑 Delete Child Data
                     </Button>
                     {isEditing ? (
