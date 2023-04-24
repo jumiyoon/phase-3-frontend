@@ -10,6 +10,11 @@ function App() {
         .then((kids) => setKids(kids))
     }, [])
 
+    function handleDeleteKid(id) {
+        const updateKidList = kids.filter((kid) => kid.id !== id);
+        setKids(updateKidList);
+    }
+
 
 
     return (
