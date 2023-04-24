@@ -1,5 +1,7 @@
 import React , { useState } from "react";
 import { Button } from 'semantic-ui-react';
+import EditRestrictions from "./EditRestrictions";
+
 
 function KidInfo( { id, name, dietaryRestrictions, parentName, parentPhone, pickupTime, onDeleteKid } ) {
     const [ isOpen, setIsOpen ] = useState(false)
