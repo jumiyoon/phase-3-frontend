@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Header from "./Header";
-import KidsList from "/KidsList";
+import KidsList from "./KidsList";
+import Search from "./Search";
+
+
 function App() {
     const [kids, setKids] = useState([]);
     const [search, setSearch] = useState("");
@@ -23,8 +26,8 @@ function App() {
     return (
          <main className="header-color">
             <Header/>
-            <Search search={search} setSearch={setSearch}
-            <KidList kids={displayKids} onKidDelete={handleDeleteKid} />
+            <Search search={search} setSearch={setSearch} />
+            <KidsList kids={displayKids} onKidDelete={handleDeleteKid} />
          </main>
     )
 }
