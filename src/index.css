@@ -1,13 +1,59 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-align: center;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+/* light mode, dark mode */
+/* :root {
+  --bg-color-1: rgb(255, 255, 255);
+  --bg-color-2: rgba(245, 245, 245);
+  --bg-color-3: rgb(57, 109, 77);
+  --main-font-color: rgb(249, 139, 12);
+  --alt-font-color: rgb(255, 255, 255);
+  --theme-primary: rgb(238, 150, 19);
+  --theme-primary-gradient: linear-gradient(
+    90deg,
+    rgb(238, 150, 19) 0%,
+    rgb(230, 187, 123) 100%
+  );
+} */
+
+
+
+.header-color {
+  --bg-color-1: rgb(0, 0, 0);
+  --bg-color-2: rgba(50, 50, 50);
+  --bg-color-3: rgba(75, 75, 75);
+  --main-font-color: rgb(200, 200, 200);
+  --alt-font-color: rgb(255, 255, 255);
+  --theme-primary: rgb(25, 100, 35);
+  --theme-primary-gradient: linear-gradient(
+    90deg,
+    rgb(25, 100, 35) 0%,
+    rgb(143, 180, 147) 100%
+  );
+}
+
+
+
+/* header */
+header {
+  padding: 1rem;
+  color: var(--alt-font-color);
+  background: var(--theme-primary-gradient);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+
