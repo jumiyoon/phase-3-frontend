@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import Header from "./Header";
 function App() {
 
 useEffect(() => {
@@ -12,6 +12,7 @@ useEffect(() => {
 
     return (
          <main className="header-color">
+            <Header/>
          </main>
     )
 }
