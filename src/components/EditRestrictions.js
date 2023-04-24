@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal, Button, Form } from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react'
 
 
 function EditRestrictions({ id } ) {
@@ -21,7 +21,18 @@ function EditRestrictions({ id } ) {
 
     return (
         <div>
-
+            <form className="ui form" onSubmit={handleFormSubmit}>
+            <div className="field">
+                <input 
+                placeholder="Restrictions" 
+                type="text"
+                value={restrictions}
+                onChange={(e) => setRestrictions(e.target.value)}
+                autoComplete="off"
+                />
+            </div>
+                <Button type="submit" size="tiny" basic color="blue">Save Changes</Button>
+            </form>
         </div>
 
     )
