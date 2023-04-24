@@ -15,12 +15,14 @@ function App() {
         setKids(updateKidList);
     }
 
+    const displayKids = kids.filter((kid) => kid.name.toLowerCase().includes(search.toLowerCase()))
+
 
 
     return (
          <main className="header-color">
             <Header/>
-            <KidList kids={kids} />
+            <KidList kids={displayKids} onKidDelete={handleDeleteKid} />
          </main>
     )
 }
