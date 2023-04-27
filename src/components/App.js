@@ -21,17 +21,28 @@ function handleDeleteKid(id) {
     setKids(updateKidList);
 }
 
-function onFormSubmit(newKid) {
-    fetch("http://localhost:9292/kids", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-    })
-    .then((r) => r.json())
-    .then((newKid) => {addNewKid(newKid)});
-  }
+// function onFormSubmit(newKid) {
+//     console.log(newKid)
+//     fetch("http://localhost:9292/kids", {
+//         method: "POST",
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify(newKid),
+//     })
+//     .then((r) => r.json())
+//     .then((newKidData) => {
+//         console.log(newKidData)
+//         console.log(kids)
+//         return setKids([...kids, newKidData])
+//     });
+// }
+
+function addNewKid(newKidData) {
+    console.log(newKidData)
+    const newKidList = [...kids, newKidData]
+    setKids(newKidList)
+}
 
 
 
@@ -43,8 +54,10 @@ const displayKids = kids.filter((kid) => kid.name.toLowerCase().includes(search.
          <main className="header-color">
             <Header/>
             <Search search={search} setSearch={setSearch} />
-            <KidsList kids={displayKids} onKidDelete={handleDeleteKid} />
-            <NewKid onFormSubmit={handleNewKid}/>
+            <KidsList kids={displayKids} onDeleteKid={handleDeleteKid} />
+            <NewKid 
+            // handleNewKid={onFormSubmit}
+            />
          </main>
     )
 }

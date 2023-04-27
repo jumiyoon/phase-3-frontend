@@ -10,12 +10,20 @@ function KidsList( {kids, onDeleteKid} ) {
                 name={kid.name}
                 id={kid.id}
                 dietaryRestrictions={kid.dietary_restrictions}
-                parentName={kid.parent.name}
+                parentName={kid.parent.family_name}
                 parentPhone={kid.parent.phone}
                 pickupTime={kid.parent.service_time}
                 onDeleteKid={onDeleteKid}
             />
             ))}
+            {/* {kids.map((kid) =>
+                <KidInfo
+                    kid={kid}
+                    name={kid.name}
+                    id={kid.id}
+                    dietaryRestrictions={kid.dietary_restrictions}
+                    onDeleteKid={onDeleteKid}
+                />)} */}
         </div>
     )
 }
