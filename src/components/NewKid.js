@@ -5,33 +5,12 @@ import { Modal, Radio, Form, Header, Button, Icon } from "semantic-ui-react";
 function NewKid( {handleNewKid} ){
     const [open, setOpen] = useState(false)
     const [saved, setSaved] = useState(false);
-    // const [formData, setFormData] = useState({
-    //     family_name: "",
-    //     phone: 1234567890,
-    //     service_time: "",
-    //     kids_attributes: 
-    //         [{family_name: "Yoons"},
-    //             {phone: 1234567890},]
-    // });
-
-
-    // function handleChange(e) {
-    //     let name = e.target.name;
-    //     let value = e.target.value;
-    //     setFormData({
-    //         ...formData,
-    //         [name]: value
-    //     });
-    // }
     const [parentData, setParentData] = useState({
         family_name: "",
         phone: "",
         service_time: "",
     });
-    const [kidData, setKidData] = useState([
-            {name: ""},
-            {dietary_restrictions: ""}
-    ]);
+    const [kidData, setKidData] = useState({});
 
 
     const serviceTimes = [
@@ -40,12 +19,15 @@ function NewKid( {handleNewKid} ){
     ]
 
     function handleParentData(e) {
-        let name = e.target.name;
-        let value = e.target.value;
-
+        let name
+        let value
+  
         if (e.target.name === undefined) {
-            name = "genre"
+            name = "service_time"
             value = e.target.textContent;
+        } else {
+            name = e.target.name;
+            value = e.target.value;
         }
 
         setParentData({
@@ -55,20 +37,16 @@ function NewKid( {handleNewKid} ){
     }
     
     function handleKidData(e) {
-        console.log(e.target.value)
         let name = e.target.name;
-        let value = e.target.value;
-        setKidData([
-            {...kidData},
-            {[name]: value}
-        ]);
+        const value = e.target.value;
+        setKidData([...kidData, {[name]: value}]);
         console.log(kidData)
     }
-
     
     function handleSubmit(e) {
         e.preventDefault();
-        const combinedData = {...parentData, kids_attributes: kidData}
+        console.log(kidData)
+        const combinedData = {...parentData, kids_attributes: [kidData]}
         console.log(combinedData)
         fetch("http://localhost:9292/parents", {
             method: "POST",
@@ -78,10 +56,8 @@ function NewKid( {handleNewKid} ){
             body: JSON.stringify(combinedData),
         })
         .then((r) => r.json())
-        .then((newKidData) => {
-        console.log(newKidData)
-        handleNewKid(newKidData)
-     })
+        // .then((newKidData) =>  console.log(newKidData))
+        console.log(combinedData)
     }
 
     return (
@@ -113,7 +89,7 @@ function NewKid( {handleNewKid} ){
         <Form.Select
                 fluid 
                 label="Service Time" 
-                name="phone"
+                name="service_time"
                 options={serviceTimes}
                 onChange={handleParentData}
                 placeholder="Service Time"
@@ -133,6 +109,7 @@ function NewKid( {handleNewKid} ){
                 onChange={handleKidData} 
                 value={kidData.dietary_restrictions}
                 autoComplete="off" />
+            <button onClick={() => console.log(kidData)} > Hey </button>
             {/* {saved ? <div>Saved!</div> : null} */}
         </Modal.Content>
         <Modal.Actions>
