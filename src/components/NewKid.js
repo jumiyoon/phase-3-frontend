@@ -1,52 +1,52 @@
 import React, { useState } from "react";
-import { Modal, Radio, Form, Header, Button, Icon } from "semantic-ui-react";
+import { Modal, Form, Header, Button, Icon } from "semantic-ui-react";
 
 
-function NewKid( {handleNewKid} ){
+function NewKid( {parentIds} ){
     const [open, setOpen] = useState(false)
-    const [saved, setSaved] = useState(false);
     const [parentData, setParentData] = useState({
         family_name: "",
         phone: "",
         service_time: "",
     });
-    const [kidData, setKidData] = useState({});
+    const [kidData, setKidData] = useState({
+        name: "",
+        dietary_restrictions: ""
+    })
 
+    // const familyNames = parentIds.map((parentId) => <option value={parentId}></option>)
 
-    const serviceTimes = [
-        {key: 'f', text: '1st Service', value: '1st Service'},
-        {key: 's', text: '2nd Service', value: '2nd Service'}
-    ]
+    // const serviceTimes = [
+    //     {key: 'f', text: '1st Service', value: '1st Service'},
+    //     {key: 's', text: '2nd Service', value: '2nd Service'}
+    // ]
 
-    function handleParentData(e) {
-        let name
-        let value
+    // function handleParentData(e) {
+    //     let name
+    //     let value
   
-        if (e.target.name === undefined) {
-            name = "service_time"
-            value = e.target.textContent;
-        } else {
-            name = e.target.name;
-            value = e.target.value;
-        }
+    //     if (e.target.name === undefined) {
+    //         name = "service_time"
+    //         value = e.target.textContent;
+    //     } else {
+    //         name = e.target.name;
+    //         value = e.target.value;
+    //     }
 
-        setParentData({
-            ...parentData,
-            [name]: value
-        });
-    }
+    //     setParentData({
+    //         ...parentData,
+    //         [name]: value
+    //     });
+    // }
     
     function handleKidData(e) {
-        let name = e.target.name;
-        const value = e.target.value;
-        setKidData([...kidData, {[name]: value}]);
-        console.log(kidData)
+        setKidData({...kidData, [e.target.name]: e.target.value})
     }
     
     function handleSubmit(e) {
         e.preventDefault();
-        console.log(kidData)
-        const combinedData = {...parentData, kids_attributes: [kidData]}
+        console.log([kidData])
+        const combinedData = {...parentData, kids: [kidData]}
         console.log(combinedData)
         fetch("http://localhost:9292/parents", {
             method: "POST",
@@ -57,7 +57,6 @@ function NewKid( {handleNewKid} ){
         })
         .then((r) => r.json())
         // .then((newKidData) =>  console.log(newKidData))
-        console.log(combinedData)
     }
 
     return (
@@ -72,7 +71,7 @@ function NewKid( {handleNewKid} ){
         >
         <Header icon="save" content="New Kid Info" as="h3" />
         <Modal.Content>
-        <Form.Input 
+        {/* <Form.Input 
                 label="Family Name" 
                 name="family_name"
                 type="text" 
@@ -93,10 +92,14 @@ function NewKid( {handleNewKid} ){
                 options={serviceTimes}
                 onChange={handleParentData}
                 placeholder="Service Time"
-                autoComplete="off" />
+                autoComplete="off" /> */}
+            
+            <select label="Parents" name="parent_id">
+                
+            </select>
    
             <Form.Input 
-                label="Name" 
+                label="Kid Name" 
                 name="name"
                 type="text" 
                 onChange={handleKidData}
@@ -109,13 +112,10 @@ function NewKid( {handleNewKid} ){
                 onChange={handleKidData} 
                 value={kidData.dietary_restrictions}
                 autoComplete="off" />
-            <button onClick={() => console.log(kidData)} > Hey </button>
+            <button onClick={() => console.log([kidData])} > Hey </button>
             {/* {saved ? <div>Saved!</div> : null} */}
         </Modal.Content>
         <Modal.Actions>
-            {/* <Button type="button" basic color='red' onClick={() => setOpen(false)}>
-            <Icon name='remove' /> Close
-            </Button> */}
             <Button color='green' type="submit">
             <Icon name='checkmark' /> Submit
             </Button>

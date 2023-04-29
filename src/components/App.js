@@ -8,35 +8,37 @@ import NewKid from "./NewKid";
 
 function App() {
 const [kids, setKids] = useState([]);
+// change the app to be parents instead ==> how am i gonna get all the kids from the parents 
+// "flat map" --> map through the parents, get the kids of the parents (array of kid objects )
 const [search, setSearch] = useState("");
+const [parentIds, setParentIds] = useState([]);
+
 
 useEffect(() => {
-    fetch("http://localhost:9292/kids")
+    fetch("http://localhost:9292/parents")
     .then((res) => res.json())
-    .then((kids) => setKids(kids))
+    .then((parents) => {
+        
+        
+        const kidData= parents.flatMap((parent) => parent.kids)
+        console.log(kidData)
+        const allParentIds = (kidData.map((kid) => kid.parent_id));
+        const uniqueIds = allParentIds.filter(function(item, pos, self) {
+            return self.indexOf(item) == pos;
+        });
+        setParentIds(uniqueIds);
+        console.log(uniqueIds)
+
+        setKids(kidData);
+    })
 }, [])
+
 
 function handleDeleteKid(id) {
     const updateKidList = kids.filter((kid) => kid.id !== id);
     setKids(updateKidList);
 }
 
-// function onFormSubmit(newKid) {
-//     console.log(newKid)
-//     fetch("http://localhost:9292/kids", {
-//         method: "POST",
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify(newKid),
-//     })
-//     .then((r) => r.json())
-//     .then((newKidData) => {
-//         console.log(newKidData)
-//         console.log(kids)
-//         return setKids([...kids, newKidData])
-//     });
-// }
 
 function addNewKid(newKidData) {
     console.log(newKidData)
@@ -56,6 +58,7 @@ const displayKids = kids.filter((kid) => kid.name.toLowerCase().includes(search.
             <Search search={search} setSearch={setSearch} />
             <KidsList kids={displayKids} onDeleteKid={handleDeleteKid} />
             <NewKid 
+                parentIds = {parentIds}
             // handleNewKid={onFormSubmit}
             />
          </main>

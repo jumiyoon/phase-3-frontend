@@ -10,10 +10,10 @@ function KidsList( {kids, onDeleteKid} ) {
                 name={kid.name}
                 id={kid.id}
                 dietaryRestrictions={kid.dietary_restrictions}
-                parentName={kid.parent.family_name}
-                parentPhone={kid.parent.phone}
-                pickupTime={kid.parent.service_time}
-                onDeleteKid={onDeleteKid}
+                // parentName={kid.parent.family_name}
+                // parentPhone={kid.parent.phone}
+                // pickupTime={kid.parent.service_time}
+                // onDeleteKid={onDeleteKid}
             />
             ))}
             {/* {kids.map((kid) =>
