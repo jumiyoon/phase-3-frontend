@@ -1,7 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import { Modal, Form, Header, Button, Icon } from "semantic-ui-react";
 
 function NewParents() {
+    const [parentData, setParentData] = useState({
+        family_name: "",
+        phone: "",
+        service_time: "",
+    });
+
+    const serviceTimes = [
+        {key: 'f', text: '1st Service', value: '1st Service'},
+        {key: 's', text: '2nd Service', value: '2nd Service'}
+    ]
+
+    function handleParentData(e) {
+        let name
+        let value
+  
+        if (e.target.name === undefined) {
+            name = "service_time"
+            value = e.target.textContent;
+        } else {
+            name = e.target.name;
+            value = e.target.value;
+        }
+
+        setParentData({
+            ...parentData,
+            [name]: value
+        });
+    }
 
     return (
         <Modal
@@ -19,7 +47,7 @@ function NewParents() {
                     label="Family Name" 
                     name="family_name"
                     type="text" 
-                    onChange={}
+                    onChange={parentData.famil_yname}
                     value={}
                     autoComplete="off" />
             <Form.Input 
@@ -27,14 +55,14 @@ function NewParents() {
                     name="phone"
                     type="number"
                     onChange={}
-                    value={}
+                    value={parentData.phone}
                     autoComplete="off" />
             <Form.Select
                     fluid 
                     label="Service Time" 
                     name="service_time"
                     options={serviceTimes}
-                    onChange={}
+                    onChange={parentData.service_time}
                     placeholder="Service Time"
                     autoComplete="off" />
             </Modal.Content>
@@ -44,7 +72,7 @@ function NewParents() {
                 </Button>
             </Modal.Actions>
         </Modal>
-
+    )
 }
 
 export default NewParents;

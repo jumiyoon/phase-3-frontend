@@ -3,23 +3,17 @@ import { Button } from 'semantic-ui-react';
 import EditRestrictions from "./EditRestrictions";
 
 
-function KidInfo( { id, name, dietaryRestrictions, parentName = "Unknown", parentPhone="Unknown", pickupTime="Unknown", onDeleteKid }  ) {
-    // 
-    // { kid, name, id, dietaryRestrictions, onDeleteKid } 
-    // const parentName = kid.parent.name
-    // const parentPhone = kid.parent.phone 
-    // const pickupTime = kid.parent.service_time
+function KidInfo( { id, name, dietaryRestrictions, parents, onDeleteKid }  ) {
 
-    // console.log(kid)
     const [ isOpen, setIsOpen ] = useState(false)
     const [ isEditing, setIsEditing ] = useState(false);
 
     const parentInfoButton = <Button size="tiny" basic color='black' onClick = {() => setIsOpen(!isOpen)}>{ isOpen ? "Hide Parent Info" : "View Parent Info" } </Button>
     const parentInfo = 
         (<div>
-            <b>👨‍👧‍👦 Name:</b> {parentName} <br/>
-            <b>📱 Phone Number: </b> {parentPhone} <br/>
-            <b>⏰ Pickup Time: </b> {pickupTime}
+            <b>👨‍👧‍👦 Name:</b> {parents[0].family_name} <br/>
+            <b>📱 Phone Number: </b> {parents[0].phone } <br/>
+            <b>⏰ Pickup Time: </b> {parents[0].service_time}
         </div>)
 
     function handleDeleteClick() {

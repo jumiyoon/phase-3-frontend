@@ -24,14 +24,12 @@ useEffect(() => {
         const uniqueIds = allParentIds.filter(function(item, pos, self) {
             return self.indexOf(item) == pos;
         });
-        
         setParents(parents);
         setParentIds(uniqueIds);
         setKids(kidData);
     })
 }, [])
 
-console.log(parents)
 
 function handleDeleteKid(id) {
     const updateKidList = kids.filter((kid) => kid.id !== id);
@@ -39,7 +37,7 @@ function handleDeleteKid(id) {
 }
 
 
-function onFormSubmit(newKidData) {
+function onNewKidSubmit(newKidData) {
     fetch("http://localhost:9292/kids", {
         method: "POST",
         headers: {
@@ -57,6 +55,17 @@ function displayNewKid(newKidData) {
     setKids(newKidList)
 }
 
+function onNewParentsSubmit(newParentData) {
+    fetch("http://localhost:9292/parents", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newParentData),
+    })
+    .then((r) => r.json())
+    .then((newParentData) =>  setParents(newParentData))
+}
 
 const displayKids = kids.filter((kid) => kid.name.toLowerCase().includes(search.toLowerCase()))
 
@@ -72,7 +81,7 @@ const displayKids = kids.filter((kid) => kid.name.toLowerCase().includes(search.
             <NewKid 
                 parentIds = {parentIds}
                 parents={parents}
-                onFormSubmit={onFormSubmit}
+                onFormSubmit={onNewKidSubmit}
             />
          </main>
     )
