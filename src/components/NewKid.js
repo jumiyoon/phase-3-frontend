@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal, Form, Header, Button, Icon } from "semantic-ui-react";
 
 
-function NewKid( {parentIds} ){
+function NewKid( {parents} ){
     const [open, setOpen] = useState(false)
     const [parentData, setParentData] = useState({
         family_name: "",
@@ -14,7 +14,8 @@ function NewKid( {parentIds} ){
         dietary_restrictions: ""
     })
 
-    // const familyNames = parentIds.map((parentId) => <option value={parentId}></option>)
+
+    const familyNames = parents.map((parent) => <option value={parent.id}>{parent.family_name}</option>)
 
     // const serviceTimes = [
     //     {key: 'f', text: '1st Service', value: '1st Service'},
@@ -94,9 +95,11 @@ function NewKid( {parentIds} ){
                 placeholder="Service Time"
                 autoComplete="off" /> */}
             
+            <label for="Family"><b>Family</b></label>
             <select label="Parents" name="parent_id">
-                
+                {familyNames}
             </select>
+            <br/>
    
             <Form.Input 
                 label="Kid Name" 

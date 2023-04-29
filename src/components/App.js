@@ -12,27 +12,26 @@ const [kids, setKids] = useState([]);
 // "flat map" --> map through the parents, get the kids of the parents (array of kid objects )
 const [search, setSearch] = useState("");
 const [parentIds, setParentIds] = useState([]);
+const [parents, setParents] = useState([]);
 
 
 useEffect(() => {
     fetch("http://localhost:9292/parents")
     .then((res) => res.json())
-    .then((parents) => {
-        
-        
+    .then((parents) => {       
         const kidData= parents.flatMap((parent) => parent.kids)
-        console.log(kidData)
         const allParentIds = (kidData.map((kid) => kid.parent_id));
         const uniqueIds = allParentIds.filter(function(item, pos, self) {
             return self.indexOf(item) == pos;
         });
+        
+        setParents(parents);
         setParentIds(uniqueIds);
-        console.log(uniqueIds)
-
         setKids(kidData);
     })
 }, [])
 
+console.log(parents)
 
 function handleDeleteKid(id) {
     const updateKidList = kids.filter((kid) => kid.id !== id);
@@ -56,9 +55,13 @@ const displayKids = kids.filter((kid) => kid.name.toLowerCase().includes(search.
          <main className="header-color">
             <Header/>
             <Search search={search} setSearch={setSearch} />
-            <KidsList kids={displayKids} onDeleteKid={handleDeleteKid} />
+            <KidsList 
+                kids={displayKids} 
+                onDeleteKid={handleDeleteKid}
+                parents={parents} />
             <NewKid 
                 parentIds = {parentIds}
+                parents={parents}
             // handleNewKid={onFormSubmit}
             />
          </main>
