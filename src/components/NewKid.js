@@ -2,20 +2,21 @@ import React, { useState } from "react";
 import { Modal, Form, Header, Button, Icon } from "semantic-ui-react";
 
 
-function NewKid( {parents} ){
+function NewKid( {parents, onFormSubmit} ){
     const [open, setOpen] = useState(false)
-    const [parentData, setParentData] = useState({
-        family_name: "",
-        phone: "",
-        service_time: "",
-    });
-    const [kidData, setKidData] = useState({
+    // const [parentData, setParentData] = useState({
+    //     family_name: "",
+    //     phone: "",
+    //     service_time: "",
+    // });
+    const [newKidForm, setNewKidForm] = useState({
         name: "",
-        dietary_restrictions: ""
+        dietary_restrictions: "",
+        parent_id: ""
     })
 
 
-    const familyNames = parents.map((parent) => <option value={parent.id}>{parent.family_name}</option>)
+    const familyNames = parents.map((parent) => <option value={parent.id} key={parent.id}>{parent.family_name}</option>)
 
     // const serviceTimes = [
     //     {key: 'f', text: '1st Service', value: '1st Service'},
@@ -40,24 +41,13 @@ function NewKid( {parents} ){
     //     });
     // }
     
-    function handleKidData(e) {
-        setKidData({...kidData, [e.target.name]: e.target.value})
+    function handleNewKid(e) {
+        setNewKidForm({...newKidForm, [e.target.name]: e.target.value})
     }
     
-    function handleSubmit(e) {
-        e.preventDefault();
-        console.log([kidData])
-        const combinedData = {...parentData, kids: [kidData]}
-        console.log(combinedData)
-        fetch("http://localhost:9292/parents", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(combinedData),
-        })
-        .then((r) => r.json())
-        // .then((newKidData) =>  console.log(newKidData))
+
+    function handleSubmit() {
+        onFormSubmit(newKidForm);
     }
 
     return (
@@ -71,51 +61,31 @@ function NewKid( {parents} ){
             trigger={<Button>Add New Kid </Button>}
         >
         <Header icon="save" content="New Kid Info" as="h3" />
-        <Modal.Content>
-        {/* <Form.Input 
-                label="Family Name" 
-                name="family_name"
-                type="text" 
-                onChange={handleParentData}
-                value={parentData.family_name}
-                autoComplete="off" />
-         <Form.Input 
-                label="Phone Number" 
-                name="phone"
-                type="number"
-                onChange={handleParentData}
-                value={parentData.phone}
-                autoComplete="off" />
-        <Form.Select
-                fluid 
-                label="Service Time" 
-                name="service_time"
-                options={serviceTimes}
-                onChange={handleParentData}
-                placeholder="Service Time"
-                autoComplete="off" /> */}
-            
-            <label for="Family"><b>Family</b></label>
-            <select label="Parents" name="parent_id">
+        <Modal.Content>        
+            <label><b>Parents</b></label>
+            <select 
+                label="Parents" 
+                name="parent_id"
+                onChange={handleNewKid}
+                value={newKidForm.parent_id}>
+                <option> </option>
                 {familyNames}
             </select>
             <br/>
-   
             <Form.Input 
                 label="Kid Name" 
                 name="name"
                 type="text" 
-                onChange={handleKidData}
-                value={kidData.name}
+                onChange={handleNewKid}
+                value={newKidForm.name}
                 autoComplete="off" />
             <Form.Input 
                 label="Dietary Restrictions" 
                 name="dietary_restrictions"
                 type="text"
-                onChange={handleKidData} 
-                value={kidData.dietary_restrictions}
+                onChange={handleNewKid} 
+                value={newKidForm.dietary_restrictions}
                 autoComplete="off" />
-            <button onClick={() => console.log([kidData])} > Hey </button>
             {/* {saved ? <div>Saved!</div> : null} */}
         </Modal.Content>
         <Modal.Actions>

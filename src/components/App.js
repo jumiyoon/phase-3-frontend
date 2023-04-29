@@ -39,13 +39,23 @@ function handleDeleteKid(id) {
 }
 
 
-function addNewKid(newKidData) {
+function onFormSubmit(newKidData) {
+    fetch("http://localhost:9292/kids", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newKidData),
+    })
+    .then((r) => r.json())
+    .then((newKidData) =>  displayNewKid(newKidData))
+}
+
+function displayNewKid(newKidData) {
     console.log(newKidData)
     const newKidList = [...kids, newKidData]
     setKids(newKidList)
 }
-
-
 
 
 const displayKids = kids.filter((kid) => kid.name.toLowerCase().includes(search.toLowerCase()))
@@ -62,7 +72,7 @@ const displayKids = kids.filter((kid) => kid.name.toLowerCase().includes(search.
             <NewKid 
                 parentIds = {parentIds}
                 parents={parents}
-            // handleNewKid={onFormSubmit}
+                onFormSubmit={onFormSubmit}
             />
          </main>
     )
