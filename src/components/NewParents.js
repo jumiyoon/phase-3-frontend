@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Modal, Form, Header, Button, Icon } from "semantic-ui-react";
 
-function NewParents() {
-    const [parentData, setParentData] = useState({
+function NewParents( { onFormSubmit }) {
+    const [newParentsData, setNewParentsData] = useState({
         family_name: "",
         phone: "",
         service_time: "",
@@ -13,7 +13,7 @@ function NewParents() {
         {key: 's', text: '2nd Service', value: '2nd Service'}
     ]
 
-    function handleParentData(e) {
+    function handleParentsData(e) {
         let name
         let value
   
@@ -25,20 +25,21 @@ function NewParents() {
             value = e.target.value;
         }
 
-        setParentData({
-            ...parentData,
+        setNewParentsData({
+            ...newParentsData,
             [name]: value
         });
+    }
+
+    function handleSubmit() {
+        onFormSubmit(newParentsData);
     }
 
     return (
         <Modal
             as={Form}
-            open={open}
             size='small'
             onSubmit={(e)=> handleSubmit(e)} 
-            onClose={() => setOpen(false)}
-            onOpen={() => setOpen(true)}
             trigger={<Button>Add New Family </Button>}
         >
             <Header icon="save" content="New Family Info" as="h3" />
@@ -47,22 +48,22 @@ function NewParents() {
                     label="Family Name" 
                     name="family_name"
                     type="text" 
-                    onChange={parentData.famil_yname}
-                    value={}
+                    onChange={handleParentsData}
+                    value={newParentsData.family_name}
                     autoComplete="off" />
             <Form.Input 
                     label="Phone Number" 
                     name="phone"
                     type="number"
-                    onChange={}
-                    value={parentData.phone}
+                    onChange={handleParentsData}
+                    value={newParentsData.phone}
                     autoComplete="off" />
             <Form.Select
                     fluid 
                     label="Service Time" 
                     name="service_time"
                     options={serviceTimes}
-                    onChange={parentData.service_time}
+                    onChange={handleParentsData}
                     placeholder="Service Time"
                     autoComplete="off" />
             </Modal.Content>

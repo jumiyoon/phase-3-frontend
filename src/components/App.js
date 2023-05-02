@@ -3,13 +3,12 @@ import Header from "./Header";
 import Search from "./Search";
 import KidsList from "./KidsList";
 import NewKid from "./NewKid";
+import NewParents from "./NewParents";
 
 
 
 function App() {
 const [kids, setKids] = useState([]);
-// change the app to be parents instead ==> how am i gonna get all the kids from the parents 
-// "flat map" --> map through the parents, get the kids of the parents (array of kid objects )
 const [search, setSearch] = useState("");
 const [parentIds, setParentIds] = useState([]);
 const [parents, setParents] = useState([]);
@@ -55,16 +54,22 @@ function displayNewKid(newKidData) {
     setKids(newKidList)
 }
 
-function onNewParentsSubmit(newParentData) {
+function onNewParentsSubmit(newParentsData) {
     fetch("http://localhost:9292/parents", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(newParentData),
+        body: JSON.stringify(newParentsData),
     })
     .then((r) => r.json())
-    .then((newParentData) =>  setParents(newParentData))
+    .then((newParentData) =>  displayNewParents(newParentsData))
+
+    function displayNewParents(newParentsData) {
+        console.log(newParentsData)
+        const newParentsList = [...parents, newParentsData]
+        setParents(newParentsList)
+    }
 }
 
 const displayKids = kids.filter((kid) => kid.name.toLowerCase().includes(search.toLowerCase()))
@@ -83,6 +88,9 @@ const displayKids = kids.filter((kid) => kid.name.toLowerCase().includes(search.
                 parents={parents}
                 onFormSubmit={onNewKidSubmit}
             />
+            <br/><br/>
+            <NewParents onFormSubmit={onNewParentsSubmit} />
+            <br/><br/><br/><br/>
          </main>
     )
 }

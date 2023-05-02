@@ -4,6 +4,7 @@ import EditRestrictions from "./EditRestrictions";
 
 
 function KidInfo( { id, name, dietaryRestrictions, parents, onDeleteKid }  ) {
+    
 
     const [ isOpen, setIsOpen ] = useState(false)
     const [ isEditing, setIsEditing ] = useState(false);
