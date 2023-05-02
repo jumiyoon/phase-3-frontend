@@ -1,9 +1,11 @@
 import React from "react";
 import KidInfo from "./KidInfo";
+import Search from "./Search";
 
-function KidsList( {kids, parents, onDeleteKid} ) {
+function KidsList( {kids, parents, onDeleteKid, search, setSearch} ) {
     return (
         <div>
+            <Search search={search} setSearch={setSearch} />
             {kids.map((kid) => (
             <KidInfo
                 key={kid.id}
@@ -14,14 +16,6 @@ function KidsList( {kids, parents, onDeleteKid} ) {
                 onDeleteKid={onDeleteKid}
             />
             ))}
-            {/* {kids.map((kid) =>
-                <KidInfo
-                    kid={kid}
-                    name={kid.name}
-                    id={kid.id}
-                    dietaryRestrictions={kid.dietary_restrictions}
-                    onDeleteKid={onDeleteKid}
-                />)} */}
         </div>
     )
 }

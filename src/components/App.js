@@ -80,11 +80,13 @@ const displayKids = kids.filter((kid) => kid.name.toLowerCase().includes(search.
     return (
          <main className="header-color">
             <Header/>
-            <Search search={search} setSearch={setSearch} />
             <KidsList 
                 kids={displayKids} 
                 onDeleteKid={handleDeleteKid}
-                parents={parents} />
+                parents={parents}
+                search={search} 
+                setSearch={setSearch}
+                 />
             <NewKid 
                 parentIds = {parentIds}
                 parents={parents}
