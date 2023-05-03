@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Modal, Form, Header, Button, Icon } from "semantic-ui-react";
 
 function NewParents( { onFormSubmit }) {
+    const [open, setOpen] = useState(false)
+    const [saved, setSaved] = useState(false);
     const [newParentsData, setNewParentsData] = useState({
         family_name: "",
         phone: "",
@@ -31,16 +33,22 @@ function NewParents( { onFormSubmit }) {
         });
     }
 
-    function handleSubmit() {
+    function handleSubmit(e) {
         onFormSubmit(newParentsData);
+        setSaved(true);
     }
 
     return (
         <Modal
+            closeIcon
             as={Form}
             size='small'
+            open={open}
+            onClose={() => setOpen(false)}
+            onOpen={() => setOpen(true)}
             onSubmit={(e)=> handleSubmit(e)} 
-            trigger={<Button>Add New Family </Button>}
+            trigger={<Button>Add New Family </Button>
+        }
         >
             <Header icon="save" content="New Family Info" as="h3" />
             <Modal.Content>
@@ -66,6 +74,8 @@ function NewParents( { onFormSubmit }) {
                     onChange={handleParentsData}
                     placeholder="Service Time"
                     autoComplete="off" />
+        {saved ? <div>Saved!</div> : null}
+
             </Modal.Content>
             <Modal.Actions>
                 <Button color='green' type="submit">

@@ -1,14 +1,12 @@
 import React from "react";
 
-function ParentInfo( {familyName, kids }){
-    console.log(kids)
+function ParentInfo( {id, familyName, kids }){
+    const parentsKids = kids.filter(Boolean).map((kid) => <li key={kid}>{kid}</li>)
+    const displayKids = parentsKids.length === 0 ? <p> Add kids!👧🏻 </p> : parentsKids
 
-    const kidNames = (
-        kids.map((kid) => <li>{kid}</li>)
-    )
-    return (
+    return ( 
         <div>
-            <b>👨‍👩‍👧‍👦 Family Name: </b>{familyName}  <b> <br/> </b>  <b>👧🏻 Kids: </b>{kidNames} <br /><br/>
+            <b>👨‍👩‍👧‍👦 Family Name: </b>{familyName}  <b> <br/> </b>  <b>👧🏻 Kids: </b>{displayKids} <br /><br/>
         </div>
     )
 

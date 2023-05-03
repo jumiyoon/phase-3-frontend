@@ -2,7 +2,7 @@ import React from "react";
 import ParentInfo from "./ParentInfo";
 
 
-function ParentList( {parents} ) {
+function ParentList( {parents, kids} ) {
 
 
     return(
@@ -11,8 +11,13 @@ function ParentList( {parents} ) {
             {parents.map((parent) => 
             <ParentInfo
                 key={parent.id}
+                id={parent.id}
                 familyName = {parent.family_name}
-                kids={parent.kids.map((kid) => kid.name)}
+                kids={kids.map((kid) => {
+                    if (kid.parent_id === parent.id) {
+                        return kid.name;
+                    } })}
+                
                 
             />)}
         </div>

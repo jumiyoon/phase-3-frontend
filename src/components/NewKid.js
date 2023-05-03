@@ -4,13 +4,14 @@ import { Modal, Form, Header, Button, Icon } from "semantic-ui-react";
 
 function NewKid( {parents, onFormSubmit} ){
     const [open, setOpen] = useState(false)
+    const [saved, setSaved] = useState(false)
     const [newKidForm, setNewKidForm] = useState({
         name: "",
         dietary_restrictions: "",
         parent_id: ""
     })
 
-    const familyNames = parents.map((parent) => <option value={parent.id} key={parent.id}>{parent.family_name}</option>)
+    const familyNames = parents.map((parent) => <option value={parent.id} key={parent.id+parent.family_name}>{parent.family_name}</option>)
 
     function handleNewKid(e) {
         setNewKidForm({...newKidForm, [e.target.name]: e.target.value})
@@ -18,10 +19,12 @@ function NewKid( {parents, onFormSubmit} ){
     
     function handleSubmit() {
         onFormSubmit(newKidForm);
+        setSaved(true);
     }
 
     return (
         <Modal
+            closeIcon
             as={Form}
             open={open}
             size='small'
@@ -56,7 +59,7 @@ function NewKid( {parents, onFormSubmit} ){
                 onChange={handleNewKid} 
                 value={newKidForm.dietary_restrictions}
                 autoComplete="off" />
-            {/* {saved ? <div>Saved!</div> : null} */}
+            {saved ? <div>Saved!</div> : null}
         </Modal.Content>
         <Modal.Actions>
             <Button color='green' type="submit">

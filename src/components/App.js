@@ -89,7 +89,7 @@ const displayKids = kids.filter((kid) => kid.name.toLowerCase().includes(search.
                     search={search} 
                     setSearch={setSearch}
                 />} />
-                <Route path="parents" element={<ParentList parents={parents}/>} />
+                <Route path="parents" element={<ParentList parents={parents} kids={kids}/>} />
             </Routes>
             
             <NewKid 
