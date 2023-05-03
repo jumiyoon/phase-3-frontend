@@ -16,10 +16,10 @@ function KidsList( {kids, parents, onDeleteKid, search, setSearch} ) {
                 onDeleteKid={onDeleteKid}
             />
             ))}
+
         </div>
     )
 }
-
 export default KidsList;
 
 

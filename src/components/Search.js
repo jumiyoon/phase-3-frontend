@@ -8,7 +8,7 @@ function Search({search, setSearch}) {
     }
 
     return (
-        <div>
+        <div style={{textAlign: "center"}}>
             <br />
             <Input
                 size="large"
