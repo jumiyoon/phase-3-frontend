@@ -17,12 +17,10 @@ function NavBar() {
         <div>
             <NavLink
                 to="/"
-                exact
                 style={barStyle}
             >Home</NavLink>
             <NavLink
                 to="/parents"
-                exact
                 style={barStyle}
             >Parent List</NavLink>
 

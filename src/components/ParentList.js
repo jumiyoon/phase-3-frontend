@@ -11,7 +11,6 @@ function ParentList( {parents, kids} ) {
             {parents.map((parent) => 
             <ParentInfo
                 key={parent.id}
-                id={parent.id}
                 familyName = {parent.family_name}
                 kids={kids.map((kid) => {
                     if (kid.parent_id === parent.id) {

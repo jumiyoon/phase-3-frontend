@@ -29,7 +29,16 @@ function NewKid( {parents, onFormSubmit} ){
             open={open}
             size='small'
             onSubmit={(e)=> handleSubmit(e)} 
-            onClose={() => setOpen(false)}
+            onClose={() => {
+                setOpen(false);
+                setSaved(false);
+                setNewKidForm({
+                    name: "",
+                    dietary_restrictions: "",
+                    parent_id: ""
+                })
+
+            }}
             onOpen={() => setOpen(true)}
             trigger={<Button>Add New Kid </Button>}
         >

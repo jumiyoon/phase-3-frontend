@@ -1,8 +1,8 @@
 import React from "react";
 
-function ParentInfo( {id, familyName, kids }){
+function ParentInfo( { familyName, kids }){
     const parentsKids = kids.filter(Boolean).map((kid) => <li key={kid}>{kid}</li>)
-    const displayKids = parentsKids.length === 0 ? <p> Add kids!👧🏻 </p> : parentsKids
+    const displayKids = parentsKids.length === 0 ? <p> No kids yet — add kids! </p> : parentsKids
 
     return ( 
         <div>

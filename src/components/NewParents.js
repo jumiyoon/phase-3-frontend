@@ -44,7 +44,16 @@ function NewParents( { onFormSubmit }) {
             as={Form}
             size='small'
             open={open}
-            onClose={() => setOpen(false)}
+            onClose={() => {
+                setOpen(false);
+                setSaved(false);
+                setNewParentsData({
+                    family_name: "",
+                    phone: "",
+                    service_time: "",
+                })
+
+            }}
             onOpen={() => setOpen(true)}
             onSubmit={(e)=> handleSubmit(e)} 
             trigger={<Button>Add New Family </Button>
