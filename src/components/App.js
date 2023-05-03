@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Header from "./Header";
-import Search from "./Search";
 import KidsList from "./KidsList";
 import NewKid from "./NewKid";
 import NewParents from "./NewParents";
@@ -80,13 +79,17 @@ const displayKids = kids.filter((kid) => kid.name.toLowerCase().includes(search.
     return (
          <main className="header-color">
             <Header/>
-            <KidsList 
-                kids={displayKids} 
-                onDeleteKid={handleDeleteKid}
-                parents={parents}
-                search={search} 
-                setSearch={setSearch}
-                 />
+            <Routes>
+                <Route path="/" element={<KidsList 
+                    kids={displayKids} 
+                    onDeleteKid={handleDeleteKid}
+                    parents={parents}
+                    search={search} 
+                    setSearch={setSearch}
+                />} />
+                <Route path="parents" element={<ParentList parents={parents}/>} />
+            </Routes>
+            
             <NewKid 
                 parentIds = {parentIds}
                 parents={parents}
