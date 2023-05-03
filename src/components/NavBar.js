@@ -5,11 +5,11 @@ import { NavLink } from "react-router-dom";
 function NavBar() {
     const barStyle = {
         display: "inline-block",
-        width: "110px",
-        fontSize: "15px",
-        padding: "20px",
+        width: "100px",
+        fontSize: "14px",
+        padding: "4px",
         margin: "0 6px 6px",
-        background: "purple",
+        background: "rgb(25, 100, 35)",
         color: "white",      
     };
 

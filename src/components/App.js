@@ -5,6 +5,7 @@ import KidsList from "./KidsList";
 import NewKid from "./NewKid";
 import NewParents from "./NewParents";
 import ParentList from "./ParentList";
+import NavBar from "./NavBar";
 
 
 
@@ -79,6 +80,7 @@ const displayKids = kids.filter((kid) => kid.name.toLowerCase().includes(search.
     return (
          <main className="header-color">
             <Header/>
+            <NavBar />
             <Routes>
                 <Route path="/" element={<KidsList 
                     kids={displayKids} 

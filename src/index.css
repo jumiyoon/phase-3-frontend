@@ -13,22 +13,6 @@ code {
 }
 
 
-/* light mode, dark mode */
-/* :root {
-  --bg-color-1: rgb(255, 255, 255);
-  --bg-color-2: rgba(245, 245, 245);
-  --bg-color-3: rgb(57, 109, 77);
-  --main-font-color: rgb(249, 139, 12);
-  --alt-font-color: rgb(255, 255, 255);
-  --theme-primary: rgb(238, 150, 19);
-  --theme-primary-gradient: linear-gradient(
-    90deg,
-    rgb(238, 150, 19) 0%,
-    rgb(230, 187, 123) 100%
-  );
-} */
-
-
 
 .header-color {
   --bg-color-1: rgb(0, 0, 0);
