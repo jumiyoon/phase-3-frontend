@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { Modal, Form, Header, Button, Icon } from "semantic-ui-react";
+import { v4 as uuid } from "uuid";
 
 
-function NewKid( {parents, onFormSubmit} ){
+function NewKid( { parents, onFormSubmit} ){
+
+
     const [open, setOpen] = useState(false)
     const [saved, setSaved] = useState(false)
     const [newKidForm, setNewKidForm] = useState({
@@ -11,7 +14,7 @@ function NewKid( {parents, onFormSubmit} ){
         parent_id: ""
     })
 
-    const familyNames = parents.map((parent) => <option value={parent.id} key={parent.id+parent.family_name}>{parent.family_name}</option>)
+    const familyNames = parents.map((parent) => <option value={parent.id} key={uuid()}>{parent.family_name}</option>)
 
     function handleNewKid(e) {
         setNewKidForm({...newKidForm, [e.target.name]: e.target.value})

@@ -12,7 +12,6 @@ import NavBar from "./NavBar";
 function App() {
 const [kids, setKids] = useState([]);
 const [search, setSearch] = useState("");
-const [parentIds, setParentIds] = useState([]);
 const [parents, setParents] = useState([]);
 
 
@@ -21,12 +20,7 @@ useEffect(() => {
     .then((res) => res.json())
     .then((parents) => {       
         const kidData= parents.flatMap((parent) => parent.kids)
-        const allParentIds = (kidData.map((kid) => kid.parent_id));
-        const uniqueIds = allParentIds.filter(function(item, pos, self) {
-            return self.indexOf(item) == pos;
-        });
         setParents(parents);
-        setParentIds(uniqueIds);
         setKids(kidData);
     })
 }, [])
@@ -60,7 +54,7 @@ function onNewParentsSubmit(newParentsData) {
         body: JSON.stringify(newParentsData),
     })
     .then((r) => r.json())
-    .then((newParentData) =>  setParents([...parents, newParentsData]))
+    .then((newParentsData) =>  setParents([...parents, newParentsData]))
 
 }
 
@@ -83,7 +77,6 @@ const kidsToDisplay = kids.filter((kid) => kid.name.toLowerCase().includes(searc
             </Routes>
             
             <NewKid 
-                parentIds = {parentIds}
                 parents={parents}
                 onFormSubmit={onNewKidSubmit}
             />
