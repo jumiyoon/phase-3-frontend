@@ -47,14 +47,9 @@ function onNewKidSubmit(newKidData) {
         body: JSON.stringify(newKidData),
     })
     .then((r) => r.json())
-    .then((newKidData) =>  displayNewKid(newKidData))
+    .then((newKidData) =>  setKids([...kids, newKidData]))
 }
 
-function displayNewKid(newKidData) {
-    console.log(newKidData)
-    const newKidList = [...kids, newKidData]
-    setKids(newKidList)
-}
 
 function onNewParentsSubmit(newParentsData) {
     fetch("http://localhost:9292/parents", {
@@ -65,16 +60,11 @@ function onNewParentsSubmit(newParentsData) {
         body: JSON.stringify(newParentsData),
     })
     .then((r) => r.json())
-    .then((newParentData) =>  displayNewParents(newParentsData))
+    .then((newParentData) =>  setParents([...parents, newParentsData]))
 
-    function displayNewParents(newParentsData) {
-        console.log(newParentsData)
-        const newParentsList = [...parents, newParentsData]
-        setParents(newParentsList)
-    }
 }
 
-const displayKids = kids.filter((kid) => kid.name.toLowerCase().includes(search.toLowerCase()))
+const kidsToDisplay = kids.filter((kid) => kid.name.toLowerCase().includes(search.toLowerCase()))
 
 
     return (
@@ -83,7 +73,7 @@ const displayKids = kids.filter((kid) => kid.name.toLowerCase().includes(search.
             <NavBar />
             <Routes>
                 <Route path="/" element={<KidsList 
-                    kids={displayKids} 
+                    kids={kidsToDisplay} 
                     onDeleteKid={handleDeleteKid}
                     parents={parents}
                     search={search} 

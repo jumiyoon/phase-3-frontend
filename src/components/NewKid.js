@@ -37,7 +37,6 @@ function NewKid( {parents, onFormSubmit} ){
                     dietary_restrictions: "",
                     parent_id: ""
                 })
-
             }}
             onOpen={() => setOpen(true)}
             trigger={<Button>Add New Kid </Button>}
