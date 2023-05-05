@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Modal, Form, Header, Button, Icon } from "semantic-ui-react";
 
-function NewParents( { onFormSubmit, allParents }) {
+function NewParents( { onFormSubmit }) {
     const [open, setOpen] = useState(false)
     const [saved, setSaved] = useState(false);
     const [newParentsData, setNewParentsData] = useState({
@@ -66,7 +66,7 @@ function NewParents( { onFormSubmit, allParents }) {
                     name="family_name"
                     type="text" 
                     onChange={handleParentsData}
-                    value={newParentsData.id}
+                    value={newParentsData.family_name}
                     autoComplete="off" />
             <Form.Input 
                     label="Phone Number" 

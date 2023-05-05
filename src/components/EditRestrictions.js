@@ -18,11 +18,11 @@ function EditRestrictions({ id } ) {
           .then((r) => r.json()) 
     }
 
-
+    const fieldStyle = {"width": "30%", "text-align": "center", "margin-left": "auto", "margin-right": "auto"}
     return (
         <div>
             <form className="ui form" onSubmit={handleFormSubmit}>
-            <div className="field">
+            <div className="field" style={fieldStyle}>
                 <input 
                 placeholder="Restrictions" 
                 type="text"
