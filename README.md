@@ -4,10 +4,10 @@ In phase 3 of Flat Iron School, I learned how to build a web basic API with Sina
 
 
 ## Intro Video
-- https://youtu.be/IQgocTBLPc4
+ https://youtu.be/IQgocTBLPc4
 
 ## Preview
-- ![Phase 3 Final.gif](https://github.com/jumiyoon/phase-3-frontend/blob/main/Phase%203%20Final.gif)
+ ![Phase 3 Final.gif](https://github.com/jumiyoon/phase-3-frontend/blob/main/Phase%203%20Final.gif)
 
 
 ## Available Scripts
