@@ -10,7 +10,7 @@ import NavBar from "./NavBar";
 
 
 function App() {
-const [kids, setKids] = useState([]);
+// const [kids, setKids] = useState([]);
 const [search, setSearch] = useState("");
 const [parents, setParents] = useState([]);
 
@@ -20,15 +20,17 @@ useEffect(() => {
     .then((res) => res.json())
     .then((parents) => {       
         const kidData= parents.flatMap((parent) => parent.kids)
+        // why flatmap? bcuz the homepage is around kids 
         setParents(parents);
-        setKids(kidData);
+        // deal with the complex state management 
     })
 }, [])
 
 
 function handleDeleteKid(id) {
-    const updateKidList = kids.filter((kid) => kid.id !== id);
-    setKids(updateKidList);
+    // const updateKidList = kids.filter((kid) => kid.id !== id);
+    // setKids(updateKidList);
+    // fix this so that i set parents instead of setting kids 
 }
 
 
@@ -41,7 +43,8 @@ function onNewKidSubmit(newKidData) {
         body: JSON.stringify(newKidData),
     })
     .then((r) => r.json())
-    .then((newKidData) =>  setKids([...kids, newKidData]))
+    // .then((newKidData) =>  setKids([...kids, newKidData]))
+    // right now i'm setting the kids ^ fix it
 }
 
 
@@ -58,8 +61,8 @@ function onNewParentsSubmit(newParentsData) {
 
 }
 
-const kidsToDisplay = kids.filter((kid) => kid.name.toLowerCase().includes(search.toLowerCase()))
-
+const kidsToDisplay = parents.flatMap((parent) => parent.kids).filter((kid) => kid.name.toLowerCase().includes(search.toLowerCase()))
+// filter should receive an array of kid objects 
 
     return (
          <main className="header-color">
@@ -73,7 +76,7 @@ const kidsToDisplay = kids.filter((kid) => kid.name.toLowerCase().includes(searc
                     search={search} 
                     setSearch={setSearch}
                 />} />
-                <Route path="parents" element={<ParentList parents={parents} kids={kids}/>} />
+                <Route path="parents" element={<ParentList parents={parents} />} />
             </Routes>
             
             <NewKid 

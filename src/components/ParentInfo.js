@@ -2,11 +2,8 @@ import React from "react";
 
 
 
-function ParentInfo( { parentId, familyName, kids }){
-
-
-    const parentsKids =  kids.filter((kid) => kid!== undefined).map((kid) => <li key={parentId+kid}>{kid}</li>)
-    const displayKids = parentsKids.length === 0 ? <p> No kids yet — add kids! </p> : parentsKids
+function ParentInfo( { familyName, kids }){
+    const displayKids = kids.length === 0 ? <p> No kids yet — add kids! </p> : kids.map((kid) => <p>{kid.name}</p>)
   
     return ( 
         <div>
@@ -17,3 +14,4 @@ function ParentInfo( { parentId, familyName, kids }){
 }
 
 export default ParentInfo;
+
