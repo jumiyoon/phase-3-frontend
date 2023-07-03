@@ -2,6 +2,8 @@
 
 In phase 3 of Flat Iron School, I learned how to build a web basic API with Sinatra and Active Record, to support a React frontend. My web application was inspired by the children's ministry at my church. There are two models—parents and kids. A kid has one parent, and a parent has many kids. This application has full CRUD functionality—meaning it can **create** new kids and new parents, **read** the parents and kids data, **update** the kid's dietary restrictions, and **delete** kid data.
 
+## Back End
+You can find the backend repo here: https://github.com/jumiyoon/phase-3-sinatra-react-project
 
 ## Intro Video
  https://youtu.be/IQgocTBLPc4
